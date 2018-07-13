@@ -12,7 +12,7 @@ public class Pit {
 		return pitNumber;
 	}
 
-	public void setPitNumber(int pitNumber) {
+	public void setPitNumber(final int pitNumber) {
 		this.pitNumber = pitNumber;
 	}
 
@@ -20,7 +20,7 @@ public class Pit {
 		return selected;
 	}
 
-	public void setSelected(boolean selected) {
+	public void setSelected(final boolean selected) {
 		this.selected = selected;
 	}
 
@@ -28,7 +28,7 @@ public class Pit {
 		return numberOfStones;
 	}
 	
-	public void setNumberOfStones(int numberOfStones) {
+	public void setNumberOfStones(final int numberOfStones) {
 		this.numberOfStones = numberOfStones;
 	}
 

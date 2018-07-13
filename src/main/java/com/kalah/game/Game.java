@@ -14,7 +14,7 @@ public class Game {
 		return blue;
 	}
 
-	public void setBlue(Player blue) {
+	public void setBlue(final Player blue) {
 		this.blue = blue;
 	}
 
@@ -22,7 +22,7 @@ public class Game {
 		return orange;
 	}
 
-	public void setOrange(Player orange) {
+	public void setOrange(final Player orange) {
 		this.orange = orange;
 	}
 
@@ -30,7 +30,7 @@ public class Game {
 		return scoreBlue;
 	}
 
-	public void setScoreBlue(int scoreBlue) {
+	public void setScoreBlue(final int scoreBlue) {
 		this.scoreBlue = scoreBlue;
 	}
 
@@ -38,7 +38,7 @@ public class Game {
 		return scoreOrange;
 	}
 
-	public void setScoreOrange(int scoreOrange) {
+	public void setScoreOrange(final int scoreOrange) {
 		this.scoreOrange = scoreOrange;
 	}
 
@@ -46,7 +46,7 @@ public class Game {
 		return winner;
 	}
 
-	public void setWinner(Player winner) {
+	public void setWinner(final Player winner) {
 		this.winner = winner;
 	}
 
@@ -58,16 +58,11 @@ public class Game {
 		this.winner = null;
 	}
 
-	public void buttonClicked() {
-		System.out.println("button clicked");
-	}
-
-	public GameStatus playMove(String color, int pitNumber) {
+	public GameStatus playMove(final String color, final int pitNumber) {
 		if (color.equals("blue")) {
 			this.blue.setSelectedPit(pitNumber);
 			return this.blue.playMove(orange);
 		} else {
-			this.orange.playMove(blue);
 			this.orange.setSelectedPit(pitNumber);
 			return this.orange.playMove(blue);
 		}
@@ -76,16 +71,6 @@ public class Game {
 	public void calcuateFinalScore() {
 		this.scoreBlue = this.blue.getFinalScore();
 		this.scoreOrange = this.orange.getFinalScore();
-		if (this.scoreBlue > this.scoreOrange)
-			this.winner = this.blue;
-		else
-			this.winner = this.orange;
+		this.winner = this.scoreBlue > this.scoreOrange ? this.blue : this.orange;
 	}
-
-	public static void main(String[] args) {
-		Game g = new Game();
-		g.init();
-		g.playMove("blue", 2);
-	}
-
 }

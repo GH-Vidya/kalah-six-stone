@@ -9,7 +9,7 @@ import com.kalah.utils.GameStatus;
 
 public class Player {
 
-	final int HOUSE = GameConstants.GAME_LEVEL + 1;
+	private final int HOUSE = GameConstants.GAME_LEVEL + 1;
 
 	private String color;
 
@@ -19,7 +19,7 @@ public class Player {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(final String color) {
 		this.color = color;
 	}
 
@@ -31,7 +31,7 @@ public class Player {
 		this.pits = pits;
 	}
 
-	public void setSelectedPit(int selectedPitNumber) {
+	public void setSelectedPit(final int selectedPitNumber) {
 		for (Pit pit : pits) {
 			if (pit.getPitNumber() == selectedPitNumber)
 				pit.setSelected(true);
@@ -66,13 +66,10 @@ public class Player {
 
 	public GameStatus playMove(Player opponent) {
 
-		// get stones count
 		Pit selectedPit = getSelectedPit();
 
 		if (selectedPit != null) {
 			int stoneCount = selectedPit.getNumberOfStones();
-
-			System.out.println("Initial Stone Count : " + stoneCount);
 
 			if (stoneCount == 0)
 				return GameStatus.EMPTY_PIT;
@@ -80,7 +77,6 @@ public class Player {
 			if (selectedPit.getPitNumber() == HOUSE)
 				return GameStatus.HOUSE_SELECTED;
 
-			// make selected pit stone count 0
 			selectedPit.emptyPit();
 
 			int pitNumber = selectedPit.getPitNumber() + 1;
@@ -133,7 +129,7 @@ public class Player {
 		return GameStatus.NEXT_PLAYER;
 	}
 
-	private void addStone(int pitNumber) {
+	private void addStone(final int pitNumber) {
 		for (Pit pit : pits) {
 			if (pit.getPitNumber() == pitNumber)
 				pit.addStone();
@@ -159,8 +155,8 @@ public class Player {
 		return null;
 	}
 	
-	public Integer getNumberOfStones(int pitNumber) {
-		for (Pit pit : pits) {
+	public Integer getNumberOfStones(final int pitNumber) {
+		for (final Pit pit : pits) {
 			if (pit.getPitNumber() == pitNumber)
 				return pit.getNumberOfStones();
 		}
