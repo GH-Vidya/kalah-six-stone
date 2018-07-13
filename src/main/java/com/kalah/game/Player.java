@@ -158,6 +158,14 @@ public class Player {
 		}
 		return null;
 	}
+	
+	public Integer getNumberOfStones(int pitNumber) {
+		for (Pit pit : pits) {
+			if (pit.getPitNumber() == pitNumber)
+				return pit.getNumberOfStones();
+		}
+		return null;
+	}
 
 	public int getFinalScore() {
 		int finalScore = 0;

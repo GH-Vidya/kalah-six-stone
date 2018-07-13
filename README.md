@@ -22,14 +22,15 @@ The game is over as soon as one of the sides run out of stones. The player who s
 ## How to run locally
 
 ```
-cd <HOME_DIRECTORY>
 git clone https://github.com/GH-Vidya/kalah-six-stone.git
 cd kalah-six-stone
 mvn clean install
 mvn spring-boot:run
-
 ```
-When the server starts, open the following URL
+When the server starts, open the following URL in your favourite browser
 ```
 http://localhost:8080/game.xhtml
 ```
+
+## How to play
+
