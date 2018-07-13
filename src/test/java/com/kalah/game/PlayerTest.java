@@ -23,7 +23,7 @@ public class PlayerTest {
 		}
 		assertEquals("total number of stones are not correct", 36, total);
 	}
-	
+
 	@Test
 	public void testGetOppositePit() {
 		int oppositePitNumber = fixture.getOppositePit(1);
@@ -44,14 +44,14 @@ public class PlayerTest {
 		oppositePitNumber = fixture.getOppositePit(6);
 		assertEquals("oppositePitNumber not correct", 1, oppositePitNumber);
 	}
-	
+
 	@Test
 	public void testPlayMoveLastStoneInHouse() {
 		fixture.setSelectedPit(1);
 		GameStatus status = fixture.playMove(opponent);
 		assertEquals("move with last stone in house not working", GameStatus.PLAY_AGAIN, status);
 	}
-	
+
 	@Test
 	public void testPlayMoveEmptyPitSelected() {
 		fixture.setSelectedPit(1);
@@ -60,11 +60,27 @@ public class PlayerTest {
 		status = fixture.playMove(opponent);
 		assertEquals("move with last stone in house not working", GameStatus.EMPTY_PIT, status);
 	}
-	
+
 	@Test
 	public void testPlayMoveNextPlayer() {
 		fixture.setSelectedPit(2);
 		GameStatus status = fixture.playMove(opponent);
 		assertEquals("move with last stone in house not working", GameStatus.NEXT_PLAYER, status);
+	}
+
+	@Test
+	public void testPlayMoveTotals() {
+		fixture.setSelectedPit(1);
+		fixture.playMove(opponent);
+		fixture.setSelectedPit(2);
+		fixture.playMove(opponent);
+		opponent.setSelectedPit(1);
+		opponent.playMove(fixture);
+		fixture.setSelectedPit(1);
+		fixture.playMove(opponent);
+		assertEquals("move with totals not working", 8, opponent.getPit(2).getNumberOfStones());
+		assertEquals("move with totals not working", 10, fixture.getPit(7).getNumberOfStones());
+		assertEquals("move with totals not working", 1, opponent.getPit(7).getNumberOfStones());
+
 	}
 }
